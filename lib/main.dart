@@ -1,22 +1,13 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/firebase/Authentication/authentication.dart';
 import 'package:quiz_app/firebase/controllers/otpcontroller.dart';
-import 'package:quiz_app/firebase/Repositories/userrepository.dart';
 import 'package:quiz_app/firebase/controllers/quizcontroller.dart';
 import 'package:quiz_app/firebase_options.dart';
 import 'package:quiz_app/pages/blank.dart';
-import 'package:quiz_app/pages/getStarted.dart';
-import 'package:quiz_app/pages/home.dart';
-import 'package:quiz_app/pages/LoginForms/login.dart';
-import 'package:quiz_app/pages/otp.dart';
-import 'package:quiz_app/pages/SignupForms/signup.dart';
-import 'package:quiz_app/pages/splash_screen.dart';
-import 'package:quiz_app/utils/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:quiz_app/pages/scorecard.dart';
 
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(
@@ -37,7 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Quizz',
       theme: ThemeData(
         // This is the theme of your application.
         //

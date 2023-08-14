@@ -53,9 +53,9 @@ class _splashscreenState extends State<splashscreen> {
               ),
               VxBox(
                 child: Text(
-                  "Quizz",
+                  "Le",
                   style: TextStyle(
-                      fontSize: 50,
+                      fontSize: 58,
                       fontFamily: GoogleFonts.nerkoOne().fontFamily,
                       fontWeight: FontWeight.bold),
                 ).box.makeCentered().expand(),
@@ -64,7 +64,7 @@ class _splashscreenState extends State<splashscreen> {
                 height: 10,
               ),
               Text(
-                "Place to excel",
+                "Learnium",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,

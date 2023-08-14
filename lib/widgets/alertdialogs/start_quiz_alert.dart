@@ -23,8 +23,10 @@ class StartQuizAlert extends StatefulWidget {
 
 class _StartQuizAlertState extends State<StartQuizAlert> {
   late String id;
+  late String time;
   int score = 0;
   int currentindex = 0;
+  int incorrect = 0;
   late String username;
   @override
   void initState() {
@@ -57,8 +59,8 @@ class _StartQuizAlertState extends State<StartQuizAlert> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: ((context) =>
-                          StartQuiz(id, score, currentindex, username))));
+                      builder: ((context) => StartQuiz(
+                          id, score, incorrect, currentindex, username))));
             },
             child: Text("Yes",
                 style: TextStyle(

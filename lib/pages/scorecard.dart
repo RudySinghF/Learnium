@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pie_chart/pie_chart.dart';
 import 'package:quiz_app/firebase/Authentication/authentication.dart';
 import 'package:quiz_app/firebase/controllers/profilecontroller.dart';
 import 'package:quiz_app/firebase/controllers/quizcontroller.dart';
@@ -16,10 +17,11 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:get/get.dart';
 
 class ScoreCard extends StatefulWidget {
-  final int marks, length;
+  final int marks, length, wrong;
   final String name;
   final String nameofquiz;
-  const ScoreCard(this.marks, this.length, this.name, this.nameofquiz);
+  const ScoreCard(
+      this.marks, this.length, this.wrong, this.name, this.nameofquiz);
 
   @override
   State<ScoreCard> createState() => _ScoreCardState();
@@ -27,9 +29,16 @@ class ScoreCard extends StatefulWidget {
 
 class _ScoreCardState extends State<ScoreCard> {
   final controller = Get.put(quizcontroller());
-  late int finalmarks, quizlength;
+  late int finalmarks, quizlength, incorrect;
   late String username;
   late String exam;
+
+  Map<String, double> data = {
+    // "Total Ques": ,
+    // "Correct": 5,
+    // "Incorrect": 5,
+    // "Ionic": 2,
+  };
   String scoreid = randomAlphaNumeric(20);
   void initState() {
     finalmarks = widget.marks;
@@ -37,6 +46,14 @@ class _ScoreCardState extends State<ScoreCard> {
     quizlength = widget.length;
     username = widget.name;
     exam = widget.nameofquiz;
+    incorrect = widget.wrong;
+    data = {
+      "Total Ques": quizlength.toDouble() -
+          (finalmarks.toDouble() + incorrect.toDouble()),
+      "Correct": finalmarks.toDouble(),
+      "Incorrect": incorrect.toDouble(),
+      // "Ionic": 2,
+    };
     print("${username}");
     print("${exam}");
     super.initState();
@@ -81,7 +98,7 @@ class _ScoreCardState extends State<ScoreCard> {
                   ),
                   Container(
                     alignment: Alignment.topCenter,
-                    height: MediaQuery.of(context).size.height * 0.500,
+                    height: MediaQuery.of(context).size.height * 0.600,
                     width: MediaQuery.of(context).size.width * 0.9,
                     margin: EdgeInsets.all(8),
                     decoration: BoxDecoration(
@@ -124,11 +141,49 @@ class _ScoreCardState extends State<ScoreCard> {
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black))),
                         ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          child: PieChart(
+                            dataMap: data,
+                            animationDuration: Duration(milliseconds: 800),
+                            chartLegendSpacing: 32,
+                            chartRadius:
+                                MediaQuery.of(context).size.width / 3.2,
+                            colorList: <Color>[
+                              Colors.grey,
+                              Colors.green,
+                              Colors.red
+                            ],
+                            initialAngleInDegree: 0,
+                            chartType: ChartType.ring,
+                            ringStrokeWidth: 32,
+                            centerText: "HYBRID",
+                            legendOptions: LegendOptions(
+                              showLegendsInRow: false,
+                              legendPosition: LegendPosition.right,
+                              showLegends: true,
+                              legendShape: BoxShape.circle,
+                              legendTextStyle: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            chartValuesOptions: ChartValuesOptions(
+                              showChartValueBackground: true,
+                              showChartValues: true,
+                              showChartValuesInPercentage: false,
+                              showChartValuesOutside: false,
+                              decimalPlaces: 1,
+                            ),
+                          ),
+                        ),
                         Container(
                           child: Column(
                             children: [
                               SizedBox(
-                                height: 30,
+                                height: 50,
                               ),
                               Container(
                                 child: Row(

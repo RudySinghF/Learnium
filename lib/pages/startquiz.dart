@@ -19,10 +19,16 @@ import 'package:get/get.dart';
 
 class StartQuiz extends StatefulWidget {
   final String id;
-  final int marks;
+  final int marks, wrong;
   final int index;
   final String name;
-  const StartQuiz(this.id, this.marks, this.index, this.name);
+  const StartQuiz(
+    this.id,
+    this.marks,
+    this.wrong,
+    this.index,
+    this.name,
+  );
 
   @override
   State<StartQuiz> createState() => _StartQuizState();
@@ -36,12 +42,13 @@ class _StartQuizState extends State<StartQuiz> {
   late String username;
   final showques = Get.put(quizcontroller());
   final user = Get.put(ProfileController());
-  late int score;
+  late int score, incorrect;
   @override
   void initState() {
     print("${widget.id}");
     quizid = widget.id;
     score = widget.marks;
+    incorrect = widget.wrong;
     currentindex = widget.index;
     username = widget.name;
     print("QuizAPP${score}");
@@ -96,8 +103,8 @@ class _StartQuizState extends State<StartQuiz> {
                               ],
                             ),
                           ),
-                          Show_questions(quizid, score, currentindex, username,
-                              quizdetails.quizname),
+                          Show_questions(quizid, score, incorrect, currentindex,
+                              username, quizdetails.quizname),
                           SizedBox(
                             height: 20,
                           ),

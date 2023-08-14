@@ -5,11 +5,13 @@ class modelquiz {
   final String quizname;
   final String quizUrl;
   final String quizDesc;
+
   const modelquiz({
     this.id,
     required this.quizname,
     required this.quizUrl,
     required this.quizDesc,
+  
   });
 
   tojson() {
@@ -17,7 +19,8 @@ class modelquiz {
       // "Id": id,
       "Title": quizname,
       "Description": quizDesc,
-      "QuizImageURL": quizUrl
+      "QuizImageURL": quizUrl,
+     
     };
   }
 
@@ -29,6 +32,7 @@ class modelquiz {
       quizname: data["Title"],
       quizDesc: data["Description"],
       quizUrl: data["QuizImageURL"],
+    
     );
   }
 }

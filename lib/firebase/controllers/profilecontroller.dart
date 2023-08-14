@@ -28,7 +28,7 @@ class ProfileController extends GetxController {
       return _userRepo.getUserName(name);
     }
     final userid = _authRepo.firebaseUser.value?.uid;
-    if (name != null) {
+    if (userid != null) {
       return _userRepo.getUserid(userid!);
     }
   }

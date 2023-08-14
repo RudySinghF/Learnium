@@ -9,6 +9,7 @@ import 'package:quiz_app/pages/home.dart';
 import 'package:quiz_app/pages/LoginForms/login.dart';
 import 'package:quiz_app/pages/otp.dart';
 import 'package:quiz_app/pages/SignupForms/signup.dart';
+import 'package:quiz_app/pages/scorecard.dart';
 import 'package:quiz_app/pages/splash_screen.dart';
 
 class authentication extends GetxController {
@@ -29,7 +30,7 @@ class authentication extends GetxController {
     if (user != null) {
       Get.offAll(() => const BottomNav());
     } else {
-      Get.to(() => const splashscreen());
+      Get.to(() => splashscreen());
     }
   }
 

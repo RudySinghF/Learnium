@@ -21,7 +21,7 @@ import 'package:get/get.dart';
 class QandA extends StatefulWidget {
   final String nameofquiz;
   final String name;
-  final int marks;
+  final int marks, wrong;
   final String id;
   final String question,
       option1,
@@ -41,6 +41,7 @@ class QandA extends StatefulWidget {
       this.questionid,
       this.correct,
       this.marks,
+      this.wrong,
       this.id,
       this.index,
       this.length,
@@ -54,6 +55,7 @@ class QandA extends StatefulWidget {
 class _QandAState extends State<QandA> {
   late String opt1, opt2, opt3, opt4, ques, correctopt, quizid, id;
   late int score;
+  late int incorrect;
   late int currentindex;
   late String username;
   late int quizlength;
@@ -69,6 +71,7 @@ class _QandAState extends State<QandA> {
   bool opt4selected = false;
   void initState() {
     score = widget.marks;
+    incorrect = widget.wrong;
     print("Score${score}");
     quizid = widget.id;
     ques = widget.question;
@@ -187,6 +190,7 @@ class _QandAState extends State<QandA> {
                                           builder: ((context) => ScoreCard(
                                               score,
                                               quizlength,
+                                              incorrect,
                                               username,
                                               exam))));
                                 });
@@ -199,12 +203,14 @@ class _QandAState extends State<QandA> {
                                           builder: ((context) => StartQuiz(
                                               quizid,
                                               score,
+                                              incorrect,
                                               currentindex + 1,
                                               username))));
                                 });
                               }
                               // optselected = "";
                             } else {
+                              incorrect++;
                               opt1selected = true;
                               opt2selected = false;
                               opt4selected = false;
@@ -219,6 +225,7 @@ class _QandAState extends State<QandA> {
                                           builder: ((context) => ScoreCard(
                                               score,
                                               quizlength,
+                                              incorrect,
                                               username,
                                               exam))));
                                 });
@@ -231,6 +238,7 @@ class _QandAState extends State<QandA> {
                                           builder: ((context) => StartQuiz(
                                               quizid,
                                               score,
+                                              incorrect,
                                               currentindex + 1,
                                               username))));
                                 });
@@ -301,6 +309,7 @@ class _QandAState extends State<QandA> {
                                           builder: ((context) => ScoreCard(
                                               score,
                                               quizlength,
+                                              incorrect,
                                               username,
                                               exam))));
                                 });
@@ -313,12 +322,14 @@ class _QandAState extends State<QandA> {
                                           builder: ((context) => StartQuiz(
                                               quizid,
                                               score,
+                                              incorrect,
                                               currentindex + 1,
                                               username))));
                                 });
                               }
                               // optselected = "";
                             } else {
+                              incorrect++;
                               opt2selected = true;
                               opt1selected = false;
                               opt4selected = false;
@@ -333,6 +344,7 @@ class _QandAState extends State<QandA> {
                                           builder: ((context) => ScoreCard(
                                               score,
                                               quizlength,
+                                              incorrect,
                                               username,
                                               exam))));
                                 });
@@ -345,6 +357,7 @@ class _QandAState extends State<QandA> {
                                           builder: ((context) => StartQuiz(
                                               quizid,
                                               score,
+                                              incorrect,
                                               currentindex + 1,
                                               username))));
                                 });
@@ -416,6 +429,7 @@ class _QandAState extends State<QandA> {
                                           builder: ((context) => ScoreCard(
                                               score,
                                               quizlength,
+                                              incorrect,
                                               username,
                                               exam))));
                                 });
@@ -428,12 +442,14 @@ class _QandAState extends State<QandA> {
                                           builder: ((context) => StartQuiz(
                                               quizid,
                                               score,
+                                              incorrect,
                                               currentindex + 1,
                                               username))));
                                 });
                               }
                               // optselected = "";
                             } else {
+                              incorrect++;
                               opt3selected = true;
                               opt1selected = false;
                               opt2selected = false;
@@ -448,6 +464,7 @@ class _QandAState extends State<QandA> {
                                           builder: ((context) => ScoreCard(
                                               score,
                                               quizlength,
+                                              incorrect,
                                               username,
                                               exam))));
                                 });
@@ -460,6 +477,7 @@ class _QandAState extends State<QandA> {
                                           builder: ((context) => StartQuiz(
                                               quizid,
                                               score,
+                                              incorrect,
                                               currentindex + 1,
                                               username))));
                                 });
@@ -531,6 +549,7 @@ class _QandAState extends State<QandA> {
                                             builder: ((context) => ScoreCard(
                                                 score,
                                                 quizlength,
+                                                incorrect,
                                                 username,
                                                 exam))));
                                   });
@@ -543,12 +562,14 @@ class _QandAState extends State<QandA> {
                                             builder: ((context) => StartQuiz(
                                                 quizid,
                                                 score,
+                                                incorrect,
                                                 currentindex + 1,
                                                 username))));
                                   });
                                 }
                                 // optselected = "";
                               } else {
+                                incorrect++;
                                 opt4selected = true;
                                 opt1selected = false;
                                 opt2selected = false;
@@ -563,6 +584,7 @@ class _QandAState extends State<QandA> {
                                             builder: ((context) => ScoreCard(
                                                 score,
                                                 quizlength,
+                                                incorrect,
                                                 username,
                                                 exam))));
                                   });
@@ -575,6 +597,7 @@ class _QandAState extends State<QandA> {
                                             builder: ((context) => StartQuiz(
                                                 quizid,
                                                 score,
+                                                incorrect,
                                                 currentindex + 1,
                                                 username))));
                                   });

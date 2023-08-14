@@ -25,7 +25,7 @@ class upquiz extends StatefulWidget {
 class _upquizState extends State<upquiz> {
   late String quizid;
   late String username;
-
+  late String time;
   final showquiz = Get.put(quizcontroller());
   final user = Get.put(ProfileController());
 

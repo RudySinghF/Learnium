@@ -78,9 +78,9 @@ class _loginState extends State<login> {
                       ),
                       VxBox(
                         child: Text(
-                          "Quizz",
+                          "Le",
                           style: TextStyle(
-                              fontSize: 32,
+                              fontSize: 38,
                               fontFamily: GoogleFonts.nerkoOne().fontFamily,
                               fontWeight: FontWeight.bold),
                         ).box.makeCentered().expand(),

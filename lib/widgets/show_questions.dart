@@ -19,11 +19,11 @@ import '../pages/startquiz.dart';
 
 class Show_questions extends StatefulWidget {
   final String quizid;
-  final int marks, index;
+  final int marks, wrong, index;
   final String name;
   final String nameofquiz;
-  const Show_questions(
-      this.quizid, this.marks, this.index, this.name, this.nameofquiz);
+  const Show_questions(this.quizid, this.marks, this.wrong, this.index,
+      this.name, this.nameofquiz);
 
   @override
   State<Show_questions> createState() => _Show_questionsState();
@@ -44,12 +44,13 @@ class _Show_questionsState extends State<Show_questions> {
   late int length;
   bool answered = false;
   String optselected = "";
-  late int score, currentindex;
+  late int score, incorrect, currentindex;
   @override
   void initState() {
     print("${widget.quizid}");
     id = widget.quizid;
     score = widget.marks;
+    incorrect = widget.wrong;
     currentindex = widget.index;
     username = widget.name;
     exam = widget.nameofquiz;
@@ -80,7 +81,7 @@ class _Show_questionsState extends State<Show_questions> {
                 correctopt = snapshot.data![currentindex].correctanswer;
                 length = snapshot.data!.length;
                 return QandA(ques, opt1, opt2, opt3, opt4, quesid, correctopt,
-                    score, id, currentindex, length, username, exam);
+                    score, incorrect, id, currentindex, length, username, exam);
               } else if (snapshot.hasError) {
                 return Center(child: Text(snapshot.error.toString()));
               } else {
