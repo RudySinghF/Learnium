@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -100,7 +102,7 @@ class _QandAState extends State<QandA> {
           if (snapshot.hasData) {
             return Container(
                 alignment: Alignment.center,
-                height: MediaQuery.of(context).size.height * 0.550,
+                height: MediaQuery.of(context).size.height * 0.650,
                 width: MediaQuery.of(context).size.width * 0.9,
                 margin: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
@@ -630,6 +632,63 @@ class _QandAState extends State<QandA> {
                             ),
                           ),
                         ],
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: SizedBox(
+                          height: 40,
+                          width: 100,
+                          child: AnimatedContainer(
+                            duration: Duration(seconds: 3),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                if (currentindex == quizlength - 1) {
+                                  setState(() {
+                                    print("Score${score}");
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: ((context) => ScoreCard(
+                                                score,
+                                                quizlength,
+                                                incorrect,
+                                                username,
+                                                exam))));
+                                  });
+                                } else {
+                                  setState(() {
+                                    print("Score${score}");
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: ((context) => StartQuiz(
+                                                quizid,
+                                                score,
+                                                incorrect,
+                                                currentindex + 1,
+                                                username))));
+                                  });
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30))),
+                              child: Text(
+                                "Next >",
+                                style: TextStyle(
+                                    fontFamily:
+                                        GoogleFonts.manrope().fontFamily,
+                                    fontSize: 14,
+                                    color: Color.fromARGB(255, 15, 82, 182),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ))
